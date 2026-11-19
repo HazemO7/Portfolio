@@ -1,0 +1,16 @@
+{
+  "name": "Hazem Abdelazez | Full Stack Software Developer",
+  "short_name": "Hazem Abdelazez",
+  "description": "Portfolio of Hazem Abdelazez, Full Stack Software Developer specializing in JavaScript, TypeScript, React, Node.js, and cloud technologies.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090C12",
+  "theme_color": "#090C12",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
