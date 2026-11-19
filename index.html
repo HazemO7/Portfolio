@@ -1421,6 +1421,79 @@
     white-space: nowrap;
   }
 
+  /* RESUME / CV */
+  .resume-card {
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+    box-shadow: var(--card-shadow);
+    transition: border-color 0.2s ease;
+  }
+
+  .resume-card:hover {
+    border-color: var(--accent-border);
+  }
+
+  .resume-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.15rem;
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .resume-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-border);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .resume-details {
+    min-width: 0;
+  }
+
+  .resume-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.015em;
+    margin-bottom: 0.2rem;
+  }
+
+  .resume-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin-bottom: 0.55rem;
+  }
+
+  .resume-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    max-width: 58ch;
+    line-height: 1.6;
+  }
+
+  .resume-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
   /* CONTACT */
   .contact-box {
     background: var(--surface);
@@ -1708,7 +1781,8 @@
     .about-prose,
     .skills-panel,
     .edu-card,
-    .vol-card {
+    .vol-card,
+    .resume-card {
       padding: 1.25rem;
     }
     .contact-box {
@@ -1749,6 +1823,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#certifications">Credentials</a></li>
         <li><a href="#education">Education</a></li>
+        <li><a href="#resume">Resume</a></li>
       </ul>
     </nav>
     <div class="nav-right">
@@ -1770,6 +1845,7 @@
   <a href="#about">About &amp; Skills</a>
   <a href="#certifications">Credentials</a>
   <a href="#education">Education &amp; Community</a>
+  <a href="#resume">Resume / CV</a>
   <a href="#contact">Contact</a>
 </div>
 
@@ -1810,6 +1886,10 @@
             <a href="mailto:abdelazez.hazem@gmail.com" class="social-link">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
               Email
+            </a>
+            <a href="#resume" class="social-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Resume / CV
             </a>
           </div>
         </div>
@@ -2318,6 +2398,39 @@
     </div>
   </section>
 
+  <!-- RESUME / CV -->
+  <section id="resume" class="content-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Curriculum Vitae</div>
+        <h2 class="section-title">Resume / CV</h2>
+      </div>
+
+      <div class="resume-card">
+        <div class="resume-info">
+          <div class="resume-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div class="resume-details">
+            <h3 class="resume-title">Hazem Abdelazez — Full-Stack Developer Resume</h3>
+            <div class="resume-meta">PDF · 2 Pages · 74 KB</div>
+            <p class="resume-desc">Download or view my complete CV covering technical skills, MERN &amp; MCP engineering projects, work experience, education, and verified certifications.</p>
+          </div>
+        </div>
+        <div class="resume-actions">
+          <a href="Hazem_Abdelazez_Resume.pdf" download="Hazem_Abdelazez_Resume.pdf" class="btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download CV (PDF)
+          </a>
+          <a href="Hazem_Abdelazez_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View PDF
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact" class="content-section">
     <div class="container">
@@ -2400,7 +2513,7 @@
   /* 1. SCROLL PROGRESS, HEADER STATE & DETERMINISTIC SCROLL-SPY */
   const scrollProgress = document.getElementById('scrollProgress');
   const siteHeader = document.getElementById('siteHeader');
-  const trackedIds = ['projects', 'experience', 'about', 'certifications', 'education', 'contact'];
+  const trackedIds = ['projects', 'experience', 'about', 'certifications', 'education', 'resume', 'contact'];
   const trackedSections = trackedIds.map(id => document.getElementById(id)).filter(Boolean);
   const navAnchors = document.querySelectorAll('.nav-links a, .nav-cta, .mobile-drawer a');
 
