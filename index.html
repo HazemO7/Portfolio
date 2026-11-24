@@ -3776,20 +3776,25 @@
       contactSubmitBtn.disabled = true;
       if (contactSubmitLabel) contactSubmitLabel.textContent = 'Sending...';
 
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+
       try {
-        const res = await fetch('https://formsubmit.co/ajax/abdelazez.hazem@gmail.com', {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          signal: controller.signal,
           body: JSON.stringify({
+            access_key: '5b03be92-f66f-48e2-b5cc-aa84999b81f5',
             name,
             email,
             message,
-            _subject: `Portfolio Inquiry from ${name}`,
-            _template: 'table'
+            subject: `Portfolio Inquiry from ${name}`,
+            from_name: 'Hazem Abdelazez Portfolio'
           })
         });
         const data = await res.json().catch(() => ({}));
-        if (!res.ok || data.success === false || data.success === 'false') {
+        if (!res.ok || data.success !== true) {
           throw new Error('Submission unavailable');
         }
         contactForm.reset();
@@ -3808,6 +3813,7 @@
         contactFormStatus.appendChild(mailtoLink);
         contactFormStatus.appendChild(document.createTextNode(' or copy my email below.'));
       } finally {
+        clearTimeout(timeoutId);
         contactSubmitBtn.disabled = false;
         if (contactSubmitLabel) contactSubmitLabel.textContent = 'Send Message';
       }
