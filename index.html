@@ -1918,6 +1918,7 @@
   }
 
   .form-status.is-fading {
+    animation: none;
     opacity: 0;
     transform: translateY(-4px);
     pointer-events: none;
@@ -3735,7 +3736,7 @@
           contactFormStatus.className = 'form-status';
           contactFormStatus.textContent = '';
         }, prefersReducedMotion ? 50 : 420);
-      }, 4500);
+      }, 3000);
     }
 
     const fieldConfigs = [
@@ -3840,7 +3841,6 @@
         fieldConfigs.forEach(cfg => setFieldError(cfg, ''));
         contactFormStatus.className = 'form-status is-success';
         contactFormStatus.textContent = 'Message sent! Thanks for reaching out — I will reply soon.';
-        showToast('Message sent successfully');
         scheduleSuccessDismiss();
       } catch {
         const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
