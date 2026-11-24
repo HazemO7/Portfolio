@@ -1882,6 +1882,11 @@
     cursor: wait;
   }
 
+  @keyframes statusFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .form-status {
     font-family: var(--font-mono);
     font-size: 0.8rem;
@@ -1890,20 +1895,32 @@
     padding: 0.65rem 0.9rem;
     border-radius: 8px;
     display: none;
+    opacity: 1;
+    transition: opacity 0.4s ease, transform 0.4s var(--ease-out-expo);
+  }
+
+  .form-status.is-success,
+  .form-status.is-error {
+    display: block;
+    animation: statusFadeIn 0.25s var(--ease-out-expo);
   }
 
   .form-status.is-success {
-    display: block;
     color: var(--green);
     background: var(--green-dim);
     border: 1px solid var(--green-border);
   }
 
   .form-status.is-error {
-    display: block;
     color: var(--error);
     background: var(--error-bg);
     border: 1px solid var(--error-border);
+  }
+
+  .form-status.is-fading {
+    opacity: 0;
+    transform: translateY(-4px);
+    pointer-events: none;
   }
 
   .form-status a {
@@ -3700,6 +3717,26 @@
     const contactSubmitLabel = contactSubmitBtn.querySelector('span');
     const contactFormStatus = document.getElementById('contactFormStatus');
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let statusFadeTimer = null;
+    let statusHideTimer = null;
+
+    function clearStatusTimers() {
+      clearTimeout(statusFadeTimer);
+      clearTimeout(statusHideTimer);
+      statusFadeTimer = null;
+      statusHideTimer = null;
+    }
+
+    function scheduleSuccessDismiss() {
+      clearStatusTimers();
+      statusFadeTimer = setTimeout(() => {
+        contactFormStatus.classList.add('is-fading');
+        statusHideTimer = setTimeout(() => {
+          contactFormStatus.className = 'form-status';
+          contactFormStatus.textContent = '';
+        }, prefersReducedMotion ? 50 : 420);
+      }, 4500);
+    }
 
     const fieldConfigs = [
       {
@@ -3747,6 +3784,7 @@
 
     contactForm.addEventListener('submit', async e => {
       e.preventDefault();
+      clearStatusTimers();
       contactFormStatus.className = 'form-status';
       contactFormStatus.textContent = '';
 
@@ -3766,6 +3804,7 @@
         contactForm.reset();
         contactFormStatus.className = 'form-status is-success';
         contactFormStatus.textContent = 'Thank you! Your message has been sent.';
+        scheduleSuccessDismiss();
         return;
       }
 
@@ -3802,6 +3841,7 @@
         contactFormStatus.className = 'form-status is-success';
         contactFormStatus.textContent = 'Message sent! Thanks for reaching out — I will reply soon.';
         showToast('Message sent successfully');
+        scheduleSuccessDismiss();
       } catch {
         const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
         const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
