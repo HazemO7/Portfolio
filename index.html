@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Hazem Abdelazez | Full Stack Software Developer</title>
 <meta name="description" content="Hazem Abdelazez is a Software Developer specializing in Full-Stack Web Development, JavaScript, TypeScript, React, Node.js, and cloud technologies. Explore his projects and professional experience.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="Hazem Abdelazez">
-<meta name="theme-color" content="#090C12">
+<meta name="theme-color" content="#090C12" id="themeColorMeta">
 <link rel="canonical" href="https://hazemdev.me/">
 <link rel="alternate" hreflang="en" href="https://hazemdev.me/">
 <link rel="alternate" hreflang="x-default" href="https://hazemdev.me/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
 <meta property="og:type" content="profile">
@@ -19,21 +21,21 @@
 <meta property="og:title" content="Hazem Abdelazez | Full Stack Software Developer">
 <meta property="og:description" content="Hazem Abdelazez is a Software Developer specializing in Full-Stack Web Development, JavaScript, TypeScript, React, Node.js, and cloud technologies. Explore his projects and professional experience.">
 <meta property="og:url" content="https://hazemdev.me/">
-<meta property="og:image" content="https://hazemdev.me/hazem-abdelazez.jpeg">
-<meta property="og:image:alt" content="Hazem Abdelazez — Full Stack Software Developer">
-<meta property="og:image:width" content="600">
-<meta property="og:image:height" content="600">
+<meta property="og:image" content="https://hazemdev.me/og-card.png">
+<meta property="og:image:alt" content="Hazem Abdelazez — Full Stack Software Developer (MERN, TypeScript, MCP &amp; AWS)">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ar_EG">
 <meta property="profile:first_name" content="Hazem">
 <meta property="profile:last_name" content="Abdelazez">
 <meta property="profile:username" content="HazemO7">
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hazem Abdelazez | Full Stack Software Developer">
 <meta name="twitter:description" content="Hazem Abdelazez is a Software Developer specializing in Full-Stack Web Development, JavaScript, TypeScript, React, Node.js, and cloud technologies. Explore his projects and professional experience.">
-<meta name="twitter:image" content="https://hazemdev.me/hazem-abdelazez.jpeg">
-<meta name="twitter:image:alt" content="Hazem Abdelazez — Full Stack Software Developer">
+<meta name="twitter:image" content="https://hazemdev.me/og-card.png">
+<meta name="twitter:image:alt" content="Hazem Abdelazez — Full Stack Software Developer (MERN, TypeScript, MCP &amp; AWS)">
 
 <script type="application/ld+json">
 {
@@ -149,6 +151,8 @@
       var saved = localStorage.getItem('portfolio-theme');
       var theme = (saved === 'light' || saved === 'dark') ? saved : 'dark';
       document.documentElement.setAttribute('data-theme', theme);
+      var tc = document.getElementById('themeColorMeta');
+      if (tc) tc.setAttribute('content', theme === 'light' ? '#F8FAFC' : '#090C12');
     } catch (e) {
       document.documentElement.setAttribute('data-theme', 'dark');
     }
@@ -206,6 +210,13 @@
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
     --header-h: 64px;
+    --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+    --card-hover-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+    --spotlight-glow: rgba(96, 165, 250, 0.11);
+    --avatar-ring: 0 0 0 1px rgba(255, 255, 255, 0.12);
+    --error: #FCA5A5;
+    --error-border: #EF4444;
+    --error-bg: rgba(239, 68, 68, 0.10);
   }
 
   [data-theme="light"] {
@@ -254,6 +265,12 @@
     --toast-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
     --modal-backdrop: rgba(15, 23, 42, 0.80);
     --modal-caption: #F8FAFC;
+    --card-hover-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    --spotlight-glow: rgba(29, 78, 216, 0.06);
+    --avatar-ring: 0 0 0 1px rgba(15, 23, 42, 0.10);
+    --error: #B91C1C;
+    --error-border: #DC2626;
+    --error-bg: rgba(220, 38, 38, 0.06);
   }
 
   html {
@@ -272,6 +289,44 @@
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  .hero-desc,
+  .project-summary,
+  .about-prose p,
+  .cert-desc,
+  .resume-desc,
+  .contact-sub,
+  .clean-list li,
+  .edu-details li {
+    text-wrap: pretty;
+  }
+
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 1rem;
+    z-index: 400;
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    background: var(--cta-bg);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transform: translateY(-220%);
+    transition: transform 0.2s var(--ease-out-expo);
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+    outline: 2px solid var(--accent-hover);
+    outline-offset: 2px;
+  }
+
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
@@ -280,6 +335,8 @@
 
   a, button {
     font-family: inherit;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* SCROLL PROGRESS BAR */
@@ -288,10 +345,12 @@
     top: 0;
     left: 0;
     height: 2px;
-    width: 0%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
     background: var(--accent);
     z-index: 300;
-    transition: width 0.08s linear;
   }
 
   /* CONTAINER */
@@ -300,6 +359,8 @@
     max-width: 1120px;
     margin: 0 auto;
     padding: 0 1.5rem;
+    padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
   }
 
   /* STICKY FULL-WIDTH HEADER */
@@ -393,10 +454,18 @@
     transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
   }
 
+  .theme-toggle svg {
+    transition: transform 0.25s var(--ease-out-expo);
+  }
+
   .theme-toggle:hover {
     color: var(--text);
     border-color: var(--accent);
     background: var(--surface-hover);
+  }
+
+  .theme-toggle:hover svg {
+    transform: rotate(15deg) scale(1.06);
   }
 
   .theme-toggle .icon-moon { display: none; }
@@ -443,6 +512,10 @@
     transition: border-color 0.15s ease, background-color 0.15s ease;
   }
 
+  .nav-toggle .icon-close { display: none; }
+  .nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
+  .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
+
   .nav-toggle:hover {
     border-color: var(--accent);
     background: var(--surface-hover);
@@ -454,18 +527,46 @@
     left: 0;
     right: 0;
     z-index: 195;
+    max-height: calc(100vh - var(--header-h));
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background: var(--drawer-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-strong);
     padding: 0.75rem 1.5rem 1.15rem;
+    padding-bottom: calc(1.15rem + env(safe-area-inset-bottom, 0px));
     display: none;
     flex-direction: column;
     gap: 0.25rem;
   }
 
+  .drawer-backdrop {
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    z-index: 190;
+    background: rgba(5, 7, 11, 0.48);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .drawer-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @keyframes drawerSlideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .mobile-drawer.open {
     display: flex;
+    animation: drawerSlideDown 0.22s var(--ease-out-expo) both;
   }
 
   .mobile-drawer a {
@@ -509,6 +610,26 @@
     min-width: 0;
   }
 
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes statFadeUp {
+    from { opacity: 0; translate: 0 14px; }
+    to { opacity: 1; translate: 0 0; }
+  }
+
+  @keyframes heroScaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes badgePulse {
+    0% { transform: scale(1); opacity: 0.75; }
+    70%, 100% { transform: scale(2.5); opacity: 0; }
+  }
+
   .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -522,14 +643,25 @@
     font-size: clamp(0.66rem, 2.75vw, 0.76rem);
     color: var(--green);
     margin-bottom: 1.15rem;
+    animation: heroFadeUp 0.55s var(--ease-out-expo) 40ms both;
   }
 
   .hero-badge-dot {
+    position: relative;
     width: 7px;
     height: 7px;
     border-radius: 50%;
     background: var(--green);
     flex-shrink: 0;
+  }
+
+  .hero-badge-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--green);
+    animation: badgePulse 2.4s var(--ease-out-expo) infinite;
   }
 
   .hero-heading {
@@ -540,6 +672,7 @@
     color: var(--text);
     margin-bottom: 0.75rem;
     overflow-wrap: break-word;
+    animation: heroFadeUp 0.55s var(--ease-out-expo) 100ms both;
   }
 
   .hero-role {
@@ -548,6 +681,7 @@
     font-weight: 500;
     color: var(--accent);
     margin-bottom: 1rem;
+    animation: heroFadeUp 0.55s var(--ease-out-expo) 160ms both;
   }
 
   .hero-desc {
@@ -556,6 +690,7 @@
     max-width: 56ch;
     line-height: 1.65;
     margin-bottom: 1.65rem;
+    animation: heroFadeUp 0.55s var(--ease-out-expo) 210ms both;
   }
 
   .hero-actions {
@@ -563,6 +698,7 @@
     gap: 0.75rem;
     flex-wrap: wrap;
     align-items: center;
+    animation: heroFadeUp 0.55s var(--ease-out-expo) 260ms both;
   }
 
   .btn-primary,
@@ -577,8 +713,13 @@
     font-size: 0.9rem;
     font-weight: 600;
     text-decoration: none;
-    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.2s var(--ease-out-expo);
     cursor: pointer;
+  }
+
+  .btn-primary svg,
+  .btn-secondary svg {
+    transition: transform 0.2s var(--ease-out-expo);
   }
 
   .btn-primary {
@@ -609,6 +750,7 @@
     gap: 0.65rem;
     margin-top: 1.25rem;
     flex-wrap: wrap;
+    animation: heroFadeUp 0.55s var(--ease-out-expo) 310ms both;
   }
 
   .social-link {
@@ -624,7 +766,7 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
-    transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+    transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease, transform 0.2s var(--ease-out-expo);
   }
 
   .social-link:hover {
@@ -639,6 +781,7 @@
     justify-content: center;
     align-items: center;
     min-width: 0;
+    animation: heroScaleIn 0.6s var(--ease-out-expo) 140ms both;
   }
 
   .profile-frame {
@@ -649,6 +792,7 @@
     background: var(--surface);
     border: 1px solid var(--border-strong);
     box-shadow: var(--portrait-shadow);
+    transition: transform 0.28s var(--ease-out-expo), border-color 0.2s ease, box-shadow 0.28s ease;
   }
 
   .avatar-inner {
@@ -658,6 +802,7 @@
     object-fit: cover;
     display: block;
     background: var(--bg-subtle);
+    box-shadow: var(--avatar-ring);
   }
 
   /* CREDIBILITY STRIP */
@@ -678,7 +823,17 @@
     gap: 0.2rem;
     min-width: 0;
     box-shadow: var(--card-shadow);
+    transition: transform 0.25s var(--ease-out-expo), border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.25s ease;
   }
+
+  .credibility-strip .stat-card {
+    animation: statFadeUp 0.5s var(--ease-out-expo) both;
+  }
+
+  .credibility-strip .stat-card:nth-child(1) { animation-delay: 240ms; }
+  .credibility-strip .stat-card:nth-child(2) { animation-delay: 300ms; }
+  .credibility-strip .stat-card:nth-child(3) { animation-delay: 360ms; }
+  .credibility-strip .stat-card:nth-child(4) { animation-delay: 420ms; }
 
   .stat-value {
     font-size: 1.35rem;
@@ -734,6 +889,8 @@
   }
 
   .project-card {
+    position: relative;
+    overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -743,7 +900,12 @@
     gap: 0.9rem;
     min-width: 0;
     box-shadow: var(--card-shadow);
-    transition: border-color 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.25s var(--ease-out-expo), border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.25s ease;
+  }
+
+  .project-card > * {
+    position: relative;
+    z-index: 1;
   }
 
   .project-card:hover {
@@ -850,10 +1012,18 @@
     transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   }
 
+  .project-link svg {
+    transition: transform 0.2s var(--ease-out-expo);
+  }
+
   .project-link:hover {
     background: var(--accent-soft-hover);
     border-color: var(--accent);
     color: var(--text);
+  }
+
+  .project-link:hover svg {
+    transform: translate(2px, -2px);
   }
 
   /* EXPERIENCE EDITORIAL LIST */
@@ -872,7 +1042,7 @@
     grid-template-columns: 230px minmax(0, 1fr);
     gap: 1.75rem;
     box-shadow: var(--card-shadow);
-    transition: border-color 0.2s ease;
+    transition: transform 0.25s var(--ease-out-expo), border-color 0.2s ease, box-shadow 0.25s ease;
   }
 
   .exp-item:hover {
@@ -997,12 +1167,13 @@
     border: 1px solid var(--border);
     color: var(--text-secondary);
     background: var(--bg-subtle);
-    transition: border-color 0.15s ease, color 0.15s ease;
+    transition: border-color 0.15s ease, color 0.15s ease, transform 0.18s var(--ease-out-expo);
   }
 
   .skill-pill:hover {
     border-color: var(--border-strong);
     color: var(--text);
+    transform: translateY(-1px);
   }
 
   .skill-pill.is-core {
@@ -1074,7 +1245,7 @@
     flex-direction: column;
     min-width: 0;
     box-shadow: var(--card-shadow);
-    transition: border-color 0.2s ease;
+    transition: transform 0.25s var(--ease-out-expo), border-color 0.2s ease, box-shadow 0.25s ease;
   }
 
   .cert-card:hover {
@@ -1275,8 +1446,16 @@
     transition: color 0.15s ease;
   }
 
+  .cert-link-badge svg {
+    transition: transform 0.2s var(--ease-out-expo);
+  }
+
   .cert-link-badge:hover {
     color: var(--accent-hover);
+  }
+
+  .cert-link-badge:hover svg {
+    transform: translate(2px, -2px);
   }
 
   .cert-preview-btn {
@@ -1316,7 +1495,7 @@
     gap: 1.25rem;
     flex-wrap: wrap;
     box-shadow: var(--card-shadow);
-    transition: border-color 0.2s ease;
+    transition: transform 0.25s var(--ease-out-expo), border-color 0.2s ease, box-shadow 0.25s ease;
   }
 
   .edu-card:hover {
@@ -1408,6 +1587,7 @@
     flex-wrap: wrap;
     margin-top: 1.15rem;
     box-shadow: var(--card-shadow);
+    transition: transform 0.25s var(--ease-out-expo), border-color 0.2s ease, box-shadow 0.25s ease;
   }
 
   .vol-badge {
@@ -1423,6 +1603,8 @@
 
   /* RESUME / CV */
   .resume-card {
+    position: relative;
+    overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--border-strong);
     border-radius: 14px;
@@ -1433,7 +1615,12 @@
     gap: 1.75rem;
     flex-wrap: wrap;
     box-shadow: var(--card-shadow);
-    transition: border-color 0.2s ease;
+    transition: transform 0.25s var(--ease-out-expo), border-color 0.2s ease, box-shadow 0.25s ease;
+  }
+
+  .resume-card > * {
+    position: relative;
+    z-index: 1;
   }
 
   .resume-card:hover {
@@ -1492,6 +1679,14 @@
     align-items: center;
     gap: 0.75rem;
     flex-wrap: wrap;
+  }
+
+  .resume-actions .btn-primary:hover svg {
+    transform: translateY(2px);
+  }
+
+  .resume-actions .btn-secondary:hover svg {
+    transform: translate(2px, -2px);
   }
 
   /* CONTACT */
@@ -1580,9 +1775,166 @@
     flex-wrap: wrap;
   }
 
+  /* DIRECT CONTACT FORM */
+  .contact-form {
+    max-width: 560px;
+    margin: 0 auto 1.65rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.95rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  .form-field label {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.68rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-strong);
+    background: var(--bg-subtle);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .form-field textarea {
+    min-height: 104px;
+    resize: vertical;
+  }
+
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.85;
+  }
+
+  .form-field input:focus-visible,
+  .form-field textarea:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  .form-field input[aria-invalid="true"],
+  .form-field textarea[aria-invalid="true"] {
+    border-color: var(--error-border);
+    background: var(--error-bg);
+  }
+
+  .field-error {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--error);
+    min-height: 1em;
+    display: none;
+  }
+
+  .field-error.visible {
+    display: block;
+  }
+
+  .sr-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin-top: 0.15rem;
+  }
+
+  .contact-submit-btn {
+    width: 100%;
+  }
+
+  .contact-submit-btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+
+  .form-status {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    text-align: center;
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    display: none;
+  }
+
+  .form-status.is-success {
+    display: block;
+    color: var(--green);
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+  }
+
+  .form-status.is-error {
+    display: block;
+    color: var(--error);
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+  }
+
+  .form-status a {
+    color: var(--accent);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .contact-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    max-width: 560px;
+    margin: 0 auto 1.35rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+  }
+
+  .contact-divider::before,
+  .contact-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
   /* FOOTER */
   footer {
     padding: 1.75rem 0 2.25rem;
+    padding-bottom: calc(2.25rem + env(safe-area-inset-bottom, 0px));
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
@@ -1595,6 +1947,9 @@
   }
 
   .back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     font-family: var(--font-mono);
     font-size: 0.78rem;
     color: var(--text-secondary);
@@ -1604,12 +1959,21 @@
     padding: 0.45rem 0.9rem;
     min-height: 38px;
     cursor: pointer;
-    transition: color 0.15s ease, border-color 0.15s ease;
+    transition: color 0.15s ease, border-color 0.15s ease, transform 0.2s var(--ease-out-expo);
+  }
+
+  .back-to-top svg {
+    transition: transform 0.2s var(--ease-out-expo);
   }
 
   .back-to-top:hover {
     color: var(--accent);
     border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .back-to-top:hover svg {
+    transform: translateY(-2px);
   }
 
   /* LIGHTBOX MODAL */
@@ -1624,12 +1988,14 @@
     justify-content: center;
     padding: 2rem;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
   }
 
   .cert-modal.active {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 
@@ -1642,6 +2008,12 @@
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
+    transform: scale(0.95) translateY(8px);
+    transition: transform 0.24s var(--ease-out-expo);
+  }
+
+  .cert-modal.active .cert-modal-content {
+    transform: scale(1) translateY(0);
   }
 
   .cert-modal-img {
@@ -1709,16 +2081,116 @@
     transform: translateY(0);
   }
 
+  /* SCROLL REVEAL */
+  .reveal-el {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s var(--ease-out-expo), transform 0.55s var(--ease-out-expo);
+  }
+
+  .reveal-el.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* HOVER ELEVATION & SPOTLIGHT (POINTER DEVICES ONLY) */
+  @media (hover: hover) and (pointer: fine) {
+    .stat-card:hover,
+    .project-card:hover,
+    .exp-item:hover,
+    .cert-card:hover,
+    .edu-card:hover,
+    .vol-card:hover,
+    .resume-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .stat-card:hover,
+    .vol-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .profile-frame:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-border);
+    }
+
+    .project-card::before,
+    .resume-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), var(--spotlight-glow), transparent 65%);
+    }
+
+    .project-card:hover::before,
+    .resume-card:hover::before {
+      opacity: 1;
+    }
+  }
+
   /* RESPONSIVE */
   @media (max-width: 960px) {
     .nav-links { display: none; }
     .nav-toggle { display: inline-flex; }
     .hero-inner {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 2rem;
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: 1.25rem;
+      row-gap: 0;
+      align-items: center;
+    }
+    .hero-content {
+      display: contents;
+    }
+    .hero-badge {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      justify-self: start;
+      margin-bottom: 1rem;
     }
     .hero-visual {
+      grid-column: 1;
+      grid-row: 2;
+      align-self: center;
       justify-content: flex-start;
+    }
+    .profile-frame {
+      width: 112px;
+      height: 112px;
+      border-radius: 18px;
+      padding: 5px;
+    }
+    .avatar-inner {
+      border-radius: 13px;
+    }
+    .hero-heading {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: center;
+      margin-bottom: 0;
+      min-width: 0;
+    }
+    .hero-role {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      margin-top: 0.95rem;
+    }
+    .hero-desc {
+      grid-column: 1 / -1;
+      grid-row: 4;
+    }
+    .hero-actions {
+      grid-column: 1 / -1;
+      grid-row: 5;
+    }
+    .hero-socials {
+      grid-column: 1 / -1;
+      grid-row: 6;
     }
     .credibility-strip {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1761,16 +2233,76 @@
     }
   }
 
+  .cert-picture,
+  .cert-modal-picture {
+    display: contents;
+  }
+
   @media (max-width: 600px) {
-    .container { padding: 0 1rem; }
+    .container {
+      padding: 0 1rem;
+      padding-left: max(1rem, env(safe-area-inset-left, 0px));
+      padding-right: max(1rem, env(safe-area-inset-right, 0px));
+    }
     .hero-section { padding: calc(var(--header-h) + 1.5rem) 0 2.25rem; }
-    .hero-badge { padding: 0.28rem 0.7rem; gap: 0.45rem; }
+    .hero-inner { column-gap: 0.9rem; }
+    .hero-badge { padding: 0.28rem 0.7rem; gap: 0.45rem; margin-bottom: 0.85rem; }
     section.content-section { padding: 3.25rem 0; }
-    .hero-heading { font-size: clamp(1.75rem, 8.2vw, 2.25rem); }
-    .profile-frame { width: 168px; height: 168px; }
+    .hero-heading {
+      font-size: clamp(1.32rem, 6vw, 1.75rem);
+      line-height: 1.15;
+    }
+    .profile-frame {
+      width: clamp(78px, 23vw, 94px);
+      height: clamp(78px, 23vw, 94px);
+      border-radius: 15px;
+      padding: 4px;
+    }
+    .avatar-inner { border-radius: 11px; }
+    .hero-role {
+      font-size: 0.85rem;
+      margin-top: 0.85rem;
+      margin-bottom: 0.85rem;
+    }
+    .hero-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-secondary {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+    }
+    .hero-socials {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+    .hero-socials .social-link {
+      justify-content: center;
+      width: 100%;
+    }
     .credibility-strip {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0.65rem;
+    }
+    .certs-filter-bar {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.25rem;
+      max-width: 100%;
+    }
+    .certs-filter-bar::-webkit-scrollbar {
+      display: none;
+    }
+    .certs-filter-bar .filter-btn {
+      flex: 0 0 auto;
+      white-space: nowrap;
+      scroll-snap-align: center;
     }
     .certs-grid,
     .certs-grid.is-filtered {
@@ -1785,15 +2317,142 @@
     .resume-card {
       padding: 1.25rem;
     }
+    .edu-card {
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .edu-duration {
+      order: -1;
+      align-self: flex-start;
+    }
+    .edu-left {
+      min-width: 0;
+      width: 100%;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .vol-card {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .vol-badge {
+      order: -1;
+      align-self: flex-start;
+    }
+    .resume-info {
+      min-width: 0;
+      width: 100%;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .resume-actions {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+    .resume-actions a {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.84rem;
+    }
     .contact-box {
       padding: 2rem 1.25rem;
+    }
+    .form-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .contact-cta-row {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.65rem;
+    }
+    .contact-email,
+    .copy-email-btn {
+      width: 100%;
+      font-size: clamp(0.76rem, 3.7vw, 0.88rem);
+      padding: 0.65rem 0.85rem;
+    }
+    .contact-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.6rem;
+      width: 100%;
+    }
+    .contact-links .social-link {
+      justify-content: center;
+      width: 100%;
+    }
+    footer {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.65rem;
+    }
+    .toast {
+      left: 1rem;
+      right: 1rem;
+      bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+      text-align: center;
+      overflow-wrap: anywhere;
     }
     .nav-cta {
       padding: 0.45rem 0.8rem;
       font-size: 0.8rem;
     }
+  }
+
+  @media (max-width: 460px) {
+    .resume-actions {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 360px) {
+    .hero-actions {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 768px), (max-height: 560px) {
     .cert-modal {
-      padding: 1rem;
+      padding: 0.85rem;
+      padding-top: max(0.85rem, env(safe-area-inset-top, 0px));
+      padding-bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
+    }
+    .cert-modal-content {
+      max-height: 92vh;
+      max-height: 92dvh;
+      gap: 0.55rem;
+    }
+    .cert-modal-close {
+      position: static;
+      align-self: flex-end;
+      flex-shrink: 0;
+    }
+    .cert-modal-img {
+      max-height: calc(92vh - 6.5rem);
+      max-height: calc(92dvh - 6.5rem);
+    }
+  }
+
+  @media (hover: none) {
+    .btn-primary:active,
+    .btn-secondary:active,
+    .nav-cta:active,
+    .social-link:active,
+    .filter-btn:active,
+    .project-link:active,
+    .cert-validation:active,
+    .copy-email-btn:active,
+    .contact-email:active,
+    .back-to-top:active,
+    .theme-toggle:active,
+    .nav-toggle:active {
+      transform: scale(0.98);
+    }
+    .cert-zoom-hint {
+      opacity: 0.92;
     }
   }
 
@@ -1804,10 +2463,84 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;
     }
+    .reveal-el {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .hero-badge-dot::after {
+      animation: none !important;
+      opacity: 0 !important;
+    }
+  }
+
+  @media print {
+    :root,
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --bg-subtle: #ffffff;
+      --surface: #ffffff;
+      --surface-hover: #ffffff;
+      --text: #0f172a;
+      --text-secondary: #1e293b;
+      --text-muted: #475569;
+      --border: #cbd5e1;
+      --border-strong: #94a3b8;
+      --accent: #1d4ed8;
+    }
+    html { scroll-behavior: auto; }
+    body {
+      background: #ffffff !important;
+      color: #0f172a !important;
+    }
+    .hero-section {
+      background: none !important;
+      padding-top: 1rem !important;
+    }
+    section.content-section {
+      padding: 1.5rem 0 !important;
+    }
+    .reveal-el {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .project-card,
+    .exp-item,
+    .cert-card,
+    .edu-card,
+    .vol-card,
+    .resume-card,
+    .contact-box,
+    .stat-card {
+      position: static !important;
+      break-inside: avoid;
+      box-shadow: none !important;
+    }
+    .project-card::before,
+    .resume-card::before,
+    .hero-badge-dot::after,
+    #scrollProgress,
+    .site-header,
+    .mobile-drawer,
+    .drawer-backdrop,
+    .skip-link,
+    .hero-actions,
+    .certs-filter-bar,
+    .cert-zoom-hint,
+    .cert-actions,
+    .resume-actions,
+    .contact-form,
+    .contact-divider,
+    .copy-email-btn,
+    .back-to-top,
+    .cert-modal,
+    .toast {
+      display: none !important;
+    }
   }
 </style>
 </head>
 <body>
+<a href="#mainContent" class="skip-link">Skip to main content</a>
 
 <div id="scrollProgress" aria-hidden="true"></div>
 
@@ -1833,13 +2566,14 @@
       </button>
       <a href="#contact" class="nav-cta">Contact</a>
       <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
   </div>
 </header>
 
-<div class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+<nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
   <a href="#projects">Projects</a>
   <a href="#experience">Experience</a>
   <a href="#about">About &amp; Skills</a>
@@ -1847,9 +2581,10 @@
   <a href="#education">Education &amp; Community</a>
   <a href="#resume">Resume / CV</a>
   <a href="#contact">Contact</a>
-</div>
+</nav>
+<div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
 
-<main>
+<main id="mainContent">
   <!-- HERO -->
   <section id="hero" class="hero-section">
     <div class="container">
@@ -1866,7 +2601,7 @@
           </p>
           <div class="hero-actions">
             <a href="#projects" class="btn-primary">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true"><path d="M6 3l14 9-14 9V3z"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
               View Projects
             </a>
             <a href="#contact" class="btn-secondary">
@@ -2173,18 +2908,21 @@
         <h2 class="section-title">Certifications</h2>
       </div>
 
-      <div class="certs-filter-bar" role="tablist" aria-label="Filter certifications">
-        <button type="button" class="filter-btn active" role="tab" aria-selected="true" data-filter="all">All Credentials (5)</button>
-        <button type="button" class="filter-btn" role="tab" aria-selected="false" data-filter="aws">AWS Certified (2)</button>
-        <button type="button" class="filter-btn" role="tab" aria-selected="false" data-filter="fullstack">Full-Stack &amp; Frontend (2)</button>
-        <button type="button" class="filter-btn" role="tab" aria-selected="false" data-filter="devops">DevOps (1)</button>
+      <div class="certs-filter-bar" role="group" aria-label="Filter certifications">
+        <button type="button" class="filter-btn active" aria-pressed="true" data-filter="all">All Credentials (5)</button>
+        <button type="button" class="filter-btn" aria-pressed="false" data-filter="aws">AWS Certified (2)</button>
+        <button type="button" class="filter-btn" aria-pressed="false" data-filter="fullstack">Full-Stack &amp; Frontend (2)</button>
+        <button type="button" class="filter-btn" aria-pressed="false" data-filter="devops">DevOps (1)</button>
       </div>
 
       <div class="certs-grid" id="certsGrid">
 
         <article class="cert-card" data-category="aws">
-          <button type="button" class="cert-img-btn" data-cert-src="aws-developer-associate.png" data-cert-title="AWS Certified Developer - Associate" aria-label="Preview AWS Certified Developer - Associate certificate">
-            <img src="aws-developer-associate.png" alt="AWS Certified Developer - Associate Certificate earned by Hazem Abdelazez" width="720" height="556" class="cert-img" loading="lazy" decoding="async">
+          <button type="button" class="cert-img-btn" data-cert-src="aws-developer-associate.png" data-cert-webp="aws-developer-associate.webp" data-cert-title="AWS Certified Developer - Associate" aria-label="Preview AWS Certified Developer - Associate certificate">
+            <picture class="cert-picture">
+              <source srcset="aws-developer-associate.webp" type="image/webp">
+              <img src="aws-developer-associate.png" alt="AWS Certified Developer - Associate Certificate earned by Hazem Abdelazez" width="720" height="556" class="cert-img" loading="lazy" decoding="async">
+            </picture>
             <span class="cert-zoom-hint">Click to zoom</span>
           </button>
           <div class="cert-body">
@@ -2204,7 +2942,7 @@
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                 Verify Credential
               </a>
-              <button type="button" class="cert-preview-btn" data-cert-src="aws-developer-associate.png" data-cert-title="AWS Certified Developer - Associate">
+              <button type="button" class="cert-preview-btn" data-cert-src="aws-developer-associate.png" data-cert-webp="aws-developer-associate.webp" data-cert-title="AWS Certified Developer - Associate">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                 Preview
               </button>
@@ -2213,8 +2951,11 @@
         </article>
 
         <article class="cert-card" data-category="aws">
-          <button type="button" class="cert-img-btn" data-cert-src="aws-cloud-practitioner.png" data-cert-title="AWS Certified Cloud Practitioner" aria-label="Preview AWS Certified Cloud Practitioner certificate">
-            <img src="aws-cloud-practitioner.png" alt="AWS Certified Cloud Practitioner Certificate earned by Hazem Abdelazez" width="719" height="559" class="cert-img" loading="lazy" decoding="async">
+          <button type="button" class="cert-img-btn" data-cert-src="aws-cloud-practitioner.png" data-cert-webp="aws-cloud-practitioner.webp" data-cert-title="AWS Certified Cloud Practitioner" aria-label="Preview AWS Certified Cloud Practitioner certificate">
+            <picture class="cert-picture">
+              <source srcset="aws-cloud-practitioner.webp" type="image/webp">
+              <img src="aws-cloud-practitioner.png" alt="AWS Certified Cloud Practitioner Certificate earned by Hazem Abdelazez" width="719" height="559" class="cert-img" loading="lazy" decoding="async">
+            </picture>
             <span class="cert-zoom-hint">Click to zoom</span>
           </button>
           <div class="cert-body">
@@ -2234,7 +2975,7 @@
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                 View Badge
               </a>
-              <button type="button" class="cert-preview-btn" data-cert-src="aws-cloud-practitioner.png" data-cert-title="AWS Certified Cloud Practitioner">
+              <button type="button" class="cert-preview-btn" data-cert-src="aws-cloud-practitioner.png" data-cert-webp="aws-cloud-practitioner.webp" data-cert-title="AWS Certified Cloud Practitioner">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                 Preview
               </button>
@@ -2243,8 +2984,11 @@
         </article>
 
         <article class="cert-card" data-category="fullstack">
-          <button type="button" class="cert-img-btn" data-cert-src="final.PNG" data-cert-title="Meta Front-End Developer Professional Certificate" aria-label="Preview Meta Front-End Developer certificate">
-            <img src="final.PNG" alt="Meta Front-End Developer Professional Certificate earned by Hazem Abdelazez" width="643" height="496" class="cert-img" loading="lazy" decoding="async">
+          <button type="button" class="cert-img-btn" data-cert-src="final.PNG" data-cert-webp="final.webp" data-cert-title="Meta Front-End Developer Professional Certificate" aria-label="Preview Meta Front-End Developer certificate">
+            <picture class="cert-picture">
+              <source srcset="final.webp" type="image/webp">
+              <img src="final.PNG" alt="Meta Front-End Developer Professional Certificate earned by Hazem Abdelazez" width="643" height="496" class="cert-img" loading="lazy" decoding="async">
+            </picture>
             <span class="cert-zoom-hint">Click to zoom</span>
           </button>
           <div class="cert-body">
@@ -2264,7 +3008,7 @@
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                 Verify Certificate
               </a>
-              <button type="button" class="cert-preview-btn" data-cert-src="final.PNG" data-cert-title="Meta Front-End Developer Professional Certificate">
+              <button type="button" class="cert-preview-btn" data-cert-src="final.PNG" data-cert-webp="final.webp" data-cert-title="Meta Front-End Developer Professional Certificate">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                 Preview
               </button>
@@ -2273,8 +3017,11 @@
         </article>
 
         <article class="cert-card" data-category="fullstack">
-          <button type="button" class="cert-img-btn" data-cert-src="java.PNG" data-cert-title="JavaScript Programming with React, Node & MongoDB" aria-label="Preview IBM JavaScript Programming certificate">
-            <img src="java.PNG" alt="IBM JavaScript Programming with React, Node & MongoDB Certificate earned by Hazem Abdelazez" width="744" height="576" class="cert-img" loading="lazy" decoding="async">
+          <button type="button" class="cert-img-btn" data-cert-src="java.PNG" data-cert-webp="java.webp" data-cert-title="JavaScript Programming with React, Node & MongoDB" aria-label="Preview IBM JavaScript Programming certificate">
+            <picture class="cert-picture">
+              <source srcset="java.webp" type="image/webp">
+              <img src="java.PNG" alt="IBM JavaScript Programming with React, Node & MongoDB Certificate earned by Hazem Abdelazez" width="744" height="576" class="cert-img" loading="lazy" decoding="async">
+            </picture>
             <span class="cert-zoom-hint">Click to zoom</span>
           </button>
           <div class="cert-body">
@@ -2294,7 +3041,7 @@
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                 Verify Certificate
               </a>
-              <button type="button" class="cert-preview-btn" data-cert-src="java.PNG" data-cert-title="JavaScript Programming with React, Node & MongoDB">
+              <button type="button" class="cert-preview-btn" data-cert-src="java.PNG" data-cert-webp="java.webp" data-cert-title="JavaScript Programming with React, Node & MongoDB">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                 Preview
               </button>
@@ -2303,8 +3050,11 @@
         </article>
 
         <article class="cert-card" data-category="devops">
-          <button type="button" class="cert-img-btn" data-cert-src="packt.PNG" data-cert-title="DevOps Complete Course Specialization" aria-label="Preview Packt DevOps Complete Course certificate">
-            <img src="packt.PNG" alt="Packt DevOps Complete Course Certificate earned by Hazem Abdelazez" width="855" height="662" class="cert-img" loading="lazy" decoding="async">
+          <button type="button" class="cert-img-btn" data-cert-src="packt.PNG" data-cert-webp="packt.webp" data-cert-title="DevOps Complete Course Specialization" aria-label="Preview Packt DevOps Complete Course certificate">
+            <picture class="cert-picture">
+              <source srcset="packt.webp" type="image/webp">
+              <img src="packt.PNG" alt="Packt DevOps Complete Course Certificate earned by Hazem Abdelazez" width="855" height="662" class="cert-img" loading="lazy" decoding="async">
+            </picture>
             <span class="cert-zoom-hint">Click to zoom</span>
           </button>
           <div class="cert-body">
@@ -2324,7 +3074,7 @@
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                 Verify Certificate
               </a>
-              <button type="button" class="cert-preview-btn" data-cert-src="packt.PNG" data-cert-title="DevOps Complete Course Specialization">
+              <button type="button" class="cert-preview-btn" data-cert-src="packt.PNG" data-cert-webp="packt.webp" data-cert-title="DevOps Complete Course Specialization">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                 Preview
               </button>
@@ -2438,6 +3188,37 @@
         <div class="section-eyebrow">Get In Touch</div>
         <h2 class="contact-title">Let's build something remarkable</h2>
         <p class="contact-sub">I'm open to new opportunities, collaborations, and engineering roles.</p>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="contactName">Name</label>
+              <input type="text" id="contactName" name="name" autocomplete="name" placeholder="Your name" required>
+              <span class="field-error" id="contactNameError"></span>
+            </div>
+            <div class="form-field">
+              <label for="contactSenderEmail">Email</label>
+              <input type="email" id="contactSenderEmail" name="email" autocomplete="email" placeholder="you@company.com" required>
+              <span class="field-error" id="contactEmailError"></span>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" name="message" rows="3" placeholder="Tell me about the opportunity or project..." required></textarea>
+            <span class="field-error" id="contactMessageError"></span>
+          </div>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="sr-honeypot" aria-hidden="true">
+          <div class="form-actions">
+            <button type="submit" class="btn-primary contact-submit-btn" id="contactSubmitBtn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <span>Send Message</span>
+            </button>
+            <div class="form-status" id="contactFormStatus" role="status" aria-live="polite"></div>
+          </div>
+        </form>
+
+        <div class="contact-divider"><span>or reach out directly</span></div>
+
         <div class="contact-cta-row">
           <a href="mailto:abdelazez.hazem@gmail.com" class="contact-email">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
@@ -2467,15 +3248,18 @@
   <footer>
     <span>© 2026 Hazem Abdelazez Abdelrahman</span>
     <span>Cairo, Egypt</span>
-    <button type="button" class="back-to-top" id="backToTop">Back to top ↑</button>
+    <button type="button" class="back-to-top" id="backToTop">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
   </footer>
 </div>
 
 <!-- CERT LIGHTBOX MODAL -->
 <div class="cert-modal" id="certModal" role="dialog" aria-modal="true" aria-labelledby="certModalCaption">
   <div class="cert-modal-content">
-    <button type="button" class="cert-modal-close" id="certModalClose" aria-label="Close certificate preview">&times;</button>
-    <img alt="" class="cert-modal-img" id="certModalImg">
+    <button type="button" class="cert-modal-close" id="certModalClose" aria-label="Close certificate preview"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <picture class="cert-modal-picture">
+      <source id="certModalSource" type="image/webp">
+      <img alt="" class="cert-modal-img" id="certModalImg">
+    </picture>
     <div class="cert-modal-caption" id="certModalCaption"></div>
   </div>
 </div>
@@ -2488,6 +3272,7 @@
 
   /* 0. THEME TOGGLE & PERSISTENCE */
   const themeToggle = document.getElementById('themeToggle');
+  const themeColorMeta = document.getElementById('themeColorMeta');
 
   function syncThemeButton(theme) {
     const isLight = theme === 'light';
@@ -2497,6 +3282,9 @@
 
   function applyTheme(theme, persist) {
     document.documentElement.setAttribute('data-theme', theme);
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', theme === 'light' ? '#F8FAFC' : '#090C12');
+    }
     syncThemeButton(theme);
     if (persist) {
       try { localStorage.setItem('portfolio-theme', theme); } catch {}
@@ -2516,14 +3304,40 @@
   const trackedIds = ['projects', 'experience', 'about', 'certifications', 'education', 'resume', 'contact'];
   const trackedSections = trackedIds.map(id => document.getElementById(id)).filter(Boolean);
   const navAnchors = document.querySelectorAll('.nav-links a, .nav-cta, .mobile-drawer a');
+  let navClickedId = null;
+  let navClickedAt = 0;
+  let navClickedScrollY = null;
+
+  function clearNavClick() {
+    navClickedId = null;
+    navClickedScrollY = null;
+  }
+
+  window.addEventListener('wheel', clearNavClick, { passive: true });
+  window.addEventListener('touchmove', clearNavClick, { passive: true });
+  window.addEventListener('keydown', e => {
+    if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(e.key)) {
+      clearNavClick();
+    }
+  });
 
   function updateActiveNav() {
     const scrollY = window.scrollY;
     const firstSectionTop = trackedSections[0] ? trackedSections[0].offsetTop : 500;
-    const atBottom = scrollY + window.innerHeight >= document.documentElement.scrollHeight - 40;
+    const atBottom = scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
+
+    if (navClickedId) {
+      if (Date.now() - navClickedAt < 950) {
+        navClickedScrollY = scrollY;
+      } else if (navClickedScrollY !== null && Math.abs(scrollY - navClickedScrollY) > 48) {
+        clearNavClick();
+      }
+    }
 
     let activeId = null;
-    if (atBottom) {
+    if (navClickedId) {
+      activeId = navClickedId;
+    } else if (atBottom) {
       activeId = 'contact';
     } else if (scrollY >= firstSectionTop - 160) {
       for (const sec of trackedSections) {
@@ -2541,29 +3355,50 @@
 
   function updateScrollUI() {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
-    scrollProgress.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    const ratio = docHeight > 0 ? Math.min(1, Math.max(0, window.scrollY / docHeight)) : 0;
+    scrollProgress.style.transform = `scaleX(${ratio})`;
     siteHeader.classList.toggle('scrolled', window.scrollY > 24);
     updateActiveNav();
   }
 
-  window.addEventListener('scroll', updateScrollUI, { passive: true });
-  window.addEventListener('resize', updateScrollUI, { passive: true });
+  let scrollTicking = false;
+  function requestScrollUI() {
+    if (!scrollTicking) {
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        updateScrollUI();
+        if (window.innerWidth > 960 && mobileDrawer.classList.contains('open')) {
+          closeMobileDrawer();
+        }
+        scrollTicking = false;
+      });
+    }
+  }
+
+  window.addEventListener('scroll', requestScrollUI, { passive: true });
+  window.addEventListener('resize', requestScrollUI, { passive: true });
   updateScrollUI();
 
   /* 2. MOBILE NAVIGATION DRAWER */
   const navToggle = document.getElementById('navToggle');
   const mobileDrawer = document.getElementById('mobileDrawer');
+  const drawerBackdrop = document.getElementById('drawerBackdrop');
 
   function closeMobileDrawer() {
     mobileDrawer.classList.remove('open');
+    if (drawerBackdrop) drawerBackdrop.classList.remove('open');
     navToggle.setAttribute('aria-expanded', 'false');
   }
 
   navToggle.addEventListener('click', () => {
     const isOpen = mobileDrawer.classList.toggle('open');
+    if (drawerBackdrop) drawerBackdrop.classList.toggle('open', isOpen);
     navToggle.setAttribute('aria-expanded', String(isOpen));
   });
+
+  if (drawerBackdrop) {
+    drawerBackdrop.addEventListener('click', closeMobileDrawer);
+  }
 
   mobileDrawer.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeMobileDrawer);
@@ -2576,6 +3411,15 @@
       const target = targetId === '#hero' ? document.body : document.querySelector(targetId);
       if (target) {
         e.preventDefault();
+        const rawId = targetId.slice(1);
+        if (trackedIds.includes(rawId)) {
+          navClickedId = rawId;
+          navClickedAt = Date.now();
+          navClickedScrollY = window.scrollY;
+          updateActiveNav();
+        } else {
+          clearNavClick();
+        }
         if (targetId === '#hero') {
           window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
         } else {
@@ -2586,10 +3430,11 @@
   });
 
   document.getElementById('backToTop').addEventListener('click', () => {
+    clearNavClick();
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   });
 
-  /* 4. CERTIFICATIONS FILTER TABS */
+  /* 4. CERTIFICATIONS FILTER GROUP */
   const filterBtns = document.querySelectorAll('.filter-btn');
   const certCards = document.querySelectorAll('.cert-card');
   const certsGrid = document.getElementById('certsGrid');
@@ -2600,8 +3445,14 @@
       filterBtns.forEach(b => {
         const selected = b === btn;
         b.classList.toggle('active', selected);
-        b.setAttribute('aria-selected', String(selected));
+        b.setAttribute('aria-pressed', String(selected));
       });
+
+      const bar = btn.parentElement;
+      if (bar && bar.scrollWidth > bar.clientWidth) {
+        const targetLeft = btn.offsetLeft - (bar.clientWidth - btn.offsetWidth) / 2;
+        bar.scrollTo({ left: Math.max(0, targetLeft), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      }
 
       certsGrid.classList.toggle('is-filtered', filter !== 'all');
 
@@ -2609,7 +3460,8 @@
         const matches = filter === 'all' || card.dataset.category === filter;
         card.classList.remove('filter-enter');
         if (matches) {
-          card.classList.remove('is-hidden');
+          card.classList.remove('is-hidden', 'reveal-el', 'is-revealed');
+          card.style.transitionDelay = '';
           void card.offsetWidth;
           card.classList.add('filter-enter');
         } else {
@@ -2657,13 +3509,21 @@
 
   /* 6. CERTIFICATE LIGHTBOX MODAL WITH FOCUS TRAP */
   const certModal = document.getElementById('certModal');
+  const certModalSource = document.getElementById('certModalSource');
   const certModalImg = document.getElementById('certModalImg');
   const certModalCaption = document.getElementById('certModalCaption');
   const certModalClose = document.getElementById('certModalClose');
   let lastFocusedTrigger = null;
 
-  function openCertModal(src, title, triggerEl) {
+  function openCertModal(src, webpSrc, title, triggerEl) {
     lastFocusedTrigger = triggerEl || document.activeElement;
+    if (certModalSource) {
+      if (webpSrc) {
+        certModalSource.srcset = webpSrc;
+      } else {
+        certModalSource.removeAttribute('srcset');
+      }
+    }
     certModalImg.src = src;
     certModalImg.alt = title;
     certModalCaption.textContent = title;
@@ -2675,6 +3535,7 @@
   function closeCertModal() {
     certModal.classList.remove('active');
     document.body.style.overflow = '';
+    if (certModalSource) certModalSource.removeAttribute('srcset');
     certModalImg.removeAttribute('src');
     if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
       lastFocusedTrigger.focus();
@@ -2684,7 +3545,7 @@
 
   document.querySelectorAll('[data-cert-src]').forEach(trigger => {
     trigger.addEventListener('click', () => {
-      openCertModal(trigger.dataset.certSrc, trigger.dataset.certTitle, trigger);
+      openCertModal(trigger.dataset.certSrc, trigger.dataset.certWebp, trigger.dataset.certTitle, trigger);
     });
   });
 
@@ -2694,11 +3555,54 @@
     if (e.target === certModal) closeCertModal();
   });
 
+  let modalTouchActive = false;
+  let modalTouchStartX = 0;
+  let modalTouchStartY = 0;
+  certModal.addEventListener('touchstart', e => {
+    if (e.touches.length === 1) {
+      modalTouchActive = true;
+      modalTouchStartX = e.touches[0].clientX;
+      modalTouchStartY = e.touches[0].clientY;
+    } else {
+      modalTouchActive = false;
+    }
+  }, { passive: true });
+
+  certModal.addEventListener('touchmove', e => {
+    if (e.touches.length > 1) modalTouchActive = false;
+  }, { passive: true });
+
+  certModal.addEventListener('touchend', e => {
+    if (!modalTouchActive || !certModal.classList.contains('active') || e.changedTouches.length !== 1) {
+      modalTouchActive = false;
+      return;
+    }
+    modalTouchActive = false;
+    const dx = e.changedTouches[0].clientX - modalTouchStartX;
+    const dy = e.changedTouches[0].clientY - modalTouchStartY;
+    if (dy > 70 && Math.abs(dy) > Math.abs(dx) * 1.5) {
+      closeCertModal();
+    }
+  }, { passive: true });
+
   document.addEventListener('keydown', e => {
     if (!certModal.classList.contains('active')) {
-      if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
-        closeMobileDrawer();
-        navToggle.focus();
+      if (mobileDrawer.classList.contains('open')) {
+        if (e.key === 'Escape') {
+          closeMobileDrawer();
+          navToggle.focus();
+        } else if (e.key === 'Tab') {
+          const focusables = [navToggle, ...mobileDrawer.querySelectorAll('a')];
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
       }
       return;
     }
@@ -2709,6 +3613,206 @@
       certModalClose.focus();
     }
   });
+
+  /* 7. SCROLL REVEAL & CARD SPOTLIGHT */
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    const revealSelector = '.section-header, .project-card, .exp-item, .about-prose, .skills-panel, .cert-card, .edu-card, .vol-card, .resume-card, .contact-box';
+    const revealTargets = document.querySelectorAll(revealSelector);
+    const parentCounts = new WeakMap();
+    let pendingReveals = [];
+
+    function revealElement(el, observer) {
+      if (!el.classList.contains('reveal-el') || el.classList.contains('is-revealed')) return;
+      el.classList.add('is-revealed');
+      observer.unobserve(el);
+      const delay = parseFloat(el.style.transitionDelay) || 0;
+      setTimeout(() => {
+        el.classList.remove('reveal-el', 'is-revealed');
+        el.style.transitionDelay = '';
+      }, delay + 620);
+    }
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) revealElement(entry.target, observer);
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    const viewportCutoff = window.innerHeight * 0.96;
+    revealTargets.forEach(el => {
+      if (el.getBoundingClientRect().top > viewportCutoff) {
+        const parent = el.parentElement;
+        const idx = parent ? (parentCounts.get(parent) || 0) : 0;
+        if (parent) parentCounts.set(parent, idx + 1);
+        const delay = Math.min(idx * 70, 280);
+        el.style.transitionDelay = `${delay}ms`;
+        el.classList.add('reveal-el');
+        revealObserver.observe(el);
+        pendingReveals.push(el);
+      }
+    });
+
+    if (pendingReveals.length > 0) {
+      let sweepTicking = false;
+      function sweepPassedReveals() {
+        sweepTicking = false;
+        pendingReveals = pendingReveals.filter(el => {
+          if (!el.classList.contains('reveal-el') || el.classList.contains('is-revealed')) return false;
+          const rect = el.getBoundingClientRect();
+          if (rect.height > 0 && rect.bottom <= 0) {
+            el.style.transitionDelay = '0ms';
+            revealElement(el, revealObserver);
+            return false;
+          }
+          return true;
+        });
+        if (pendingReveals.length === 0) {
+          window.removeEventListener('scroll', onSweepScroll);
+        }
+      }
+      function onSweepScroll() {
+        if (!sweepTicking) {
+          sweepTicking = true;
+          requestAnimationFrame(sweepPassedReveals);
+        }
+      }
+      window.addEventListener('scroll', onSweepScroll, { passive: true });
+    }
+  }
+
+  if (!prefersReducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.project-card, .resume-card').forEach(card => {
+      card.addEventListener('pointermove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+      }, { passive: true });
+    });
+  }
+
+  /* 8. DIRECT CONTACT FORM */
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    const contactName = document.getElementById('contactName');
+    const contactEmail = document.getElementById('contactSenderEmail');
+    const contactMessage = document.getElementById('contactMessage');
+    const contactSubmitBtn = document.getElementById('contactSubmitBtn');
+    const contactSubmitLabel = contactSubmitBtn.querySelector('span');
+    const contactFormStatus = document.getElementById('contactFormStatus');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const fieldConfigs = [
+      {
+        input: contactName,
+        errorEl: document.getElementById('contactNameError'),
+        validate: val => (val.trim() ? '' : 'Please enter your name.')
+      },
+      {
+        input: contactEmail,
+        errorEl: document.getElementById('contactEmailError'),
+        validate: val => {
+          const trimmed = val.trim();
+          if (!trimmed) return 'Please enter your email address.';
+          return emailPattern.test(trimmed) ? '' : 'Please enter a valid email address.';
+        }
+      },
+      {
+        input: contactMessage,
+        errorEl: document.getElementById('contactMessageError'),
+        validate: val => (val.trim() ? '' : 'Please enter a message.')
+      }
+    ];
+
+    function setFieldError(cfg, message) {
+      if (message) {
+        cfg.input.setAttribute('aria-invalid', 'true');
+        cfg.input.setAttribute('aria-describedby', cfg.errorEl.id);
+        cfg.errorEl.textContent = message;
+        cfg.errorEl.classList.add('visible');
+      } else {
+        cfg.input.removeAttribute('aria-invalid');
+        cfg.input.removeAttribute('aria-describedby');
+        cfg.errorEl.textContent = '';
+        cfg.errorEl.classList.remove('visible');
+      }
+    }
+
+    fieldConfigs.forEach(cfg => {
+      cfg.input.addEventListener('input', () => {
+        if (cfg.input.getAttribute('aria-invalid') === 'true' && !cfg.validate(cfg.input.value)) {
+          setFieldError(cfg, '');
+        }
+      });
+    });
+
+    contactForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      contactFormStatus.className = 'form-status';
+      contactFormStatus.textContent = '';
+
+      let firstInvalid = null;
+      fieldConfigs.forEach(cfg => {
+        const err = cfg.validate(cfg.input.value);
+        setFieldError(cfg, err);
+        if (err && !firstInvalid) firstInvalid = cfg.input;
+      });
+
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+
+      if (contactForm._honey && contactForm._honey.value) {
+        contactForm.reset();
+        contactFormStatus.className = 'form-status is-success';
+        contactFormStatus.textContent = 'Thank you! Your message has been sent.';
+        return;
+      }
+
+      const name = contactName.value.trim();
+      const email = contactEmail.value.trim();
+      const message = contactMessage.value.trim();
+
+      contactSubmitBtn.disabled = true;
+      if (contactSubmitLabel) contactSubmitLabel.textContent = 'Sending...';
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/abdelazez.hazem@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name,
+            email,
+            message,
+            _subject: `Portfolio Inquiry from ${name}`,
+            _template: 'table'
+          })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.success === false || data.success === 'false') {
+          throw new Error('Submission unavailable');
+        }
+        contactForm.reset();
+        fieldConfigs.forEach(cfg => setFieldError(cfg, ''));
+        contactFormStatus.className = 'form-status is-success';
+        contactFormStatus.textContent = 'Message sent! Thanks for reaching out — I will reply soon.';
+        showToast('Message sent successfully');
+      } catch {
+        const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+        contactFormStatus.className = 'form-status is-error';
+        contactFormStatus.textContent = 'Direct delivery is currently unavailable. You can still ';
+        const mailtoLink = document.createElement('a');
+        mailtoLink.href = `mailto:abdelazez.hazem@gmail.com?subject=${subject}&body=${body}`;
+        mailtoLink.textContent = 'send via your email app';
+        contactFormStatus.appendChild(mailtoLink);
+        contactFormStatus.appendChild(document.createTextNode(' or copy my email below.'));
+      } finally {
+        contactSubmitBtn.disabled = false;
+        if (contactSubmitLabel) contactSubmitLabel.textContent = 'Send Message';
+      }
+    });
+  }
 </script>
 </body>
 </html>
